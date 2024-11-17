@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Exercise Visualisasi dengan Matplotlib pada Python - Part 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="Judul">Exercise</h1>
+        </div>
+    </div>
+    
+<style>
+
+    body{
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .container{
+        width: 94%;
+        border: 0.1vw solid #4471c4;
+        border-radius: 1em;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        padding-left: 4%;
+        padding-right: 3%;
+        padding-right: 10%;
+        margin-top: 3%;
+        margin-left: 3%;
+        margin-right: 3%;
+        background-color: aliceblue;
+        background: linear-gradient(25deg, #4471c4, #fff);  
+    }
+
+    .container .header{
+        color: navy;
+    }
+
+    .Judul{
+        max-width: 100%;
+        min-width: 30%;
+        font-size: 42px;
+        text-align: center;
+        font-weight: bolder;
+        margin: 1%;
+        margin-left: 5%;
+        font-family: calibri, Arial, sans-serif;
+    }
+
+    .content-box{
+        max-width: 100%;
+        min-width: 30%;
+        border: 0.1vw solid #4471c4;
+        border-radius: 1em;
+        background-color: ghostwhite;
+        box-shadow: 0.4vw 0.4vw 1.5vw rgba(0, 0, 0, 0.1);
+        font-family: Calibri, Arial, sans-serif;
+        font-size: 12px;
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 1%;
+        margin-bottom: 5%;
+        padding-left: 3%;
+        padding-right: 3%;
+        padding-bottom: 3%;
+        text-align: justify;
+    }
+
+    h1{
+        font-size: 26px; /* Ukuran font 18 */
+        font-weight: bold;
+        font-family: Calibri Arial sans-serif;
+        margin-top: 1.5%;
+        margin-bottom: 1.5%;
+        line-height: 1.5; /* Jarak spasi 1.5 */
+        text-align: justify;     
+    }
+
+    h2{
+        font-size: 20px; /* Ukuran font 16 */
+        font-family: Calibri Arial sans-serif;
+        margin-top: 1.5%;
+        margin-bottom: 1.5%;
+        line-height: 1.5; /* Jarak spasi 1.5 */
+        text-align: justify;
+    }
+
+    p{
+        font-size: 16px; /* Ukuran font 22 */
+        font-family: Calibri Arial sans-serif;
+        line-height: 1.5;    
+    }
+
+    /* Style for ul and ol */
+    ul, ol{
+        line-height: 1.5; /* Jarak spasi 1.5 */
+        list-style-type: decimal;
+        font-size: 18px; /* Ukuran font 18 */
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 5%;
+        font-family: Calibri, Arial, sans-serif;
+        text-align: justify;
+        max-width: 90vw;
+    }
+
+    ol{
+        font-size: 16px; /* Ukuran font 22 */
+        line-height: 1.5; /* Jarak spasi 1.5 */
+        list-style-type: decimal;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        font-family: Calibri Arial sans-serif;
+        text-align: justify;
+    }
+
+    li{
+        font-size: 16px; /* Ukuran font 22 */
+        line-height: 1.5; /* Jarak spasi 1.5 */
+        margin-left: 2%;
+        font-family: Calibri Arial sans-serif;
+        text-align: justify;
+    }
+
+    table{
+        width: 85%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        margin-left: 10px;
+    }
+
+    .kotak {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    padding: 1.5vw;
+    line-height: 1.5;
+    width: 85%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    background-color: grey;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+    .teks-tomato{
+    color: tomato;
+    font-weight: bold;
+    }
+
+    .teks-blue{
+        color: blue;
+        font-weight: bold;
+    }
+
+    .teks-sandybrown{
+        color: sandybrown;
+        font-weight: bold;
+    }
+
+    .teks-skyblue{
+        color: skyblue;
+        font-weight: bold;
+    }
+
+    .garis-bawah{
+        text-decoration: none; /*menghilangkan garis bawah bawaan*/
+        text-decoration-thickness: 2px; /*ketebalan teks*/
+        border-bottom: 2px solid black; /*garis di bawah teks*/
+        padding-bottom: 1px; /*jarak antara teks dan garis bawah*/
+    }
+
+    .margin-left{
+        margin-left: 7%;
+        color: skyblue;
+        font-weight: bold;
+    }
+
+
+    </style>
+
+    <div class="content-box"> <!--Berisi konten exercise--> 
+        <h1>
+            <span class="garis-bawah">Instruksi</span>
+        </h1>
+        <p>
+            Seorang sales manager di sebuah perusahaan retail ingin menganalisis kinerja penjualan produk mereka selama satu tahun terakhir untuk mengidentifikasi tren dan pola musiman. 
+            Data penjualan bulanan yang diperoleh menunjukkan jumlah unit yang terjual untuk setiap produk utama dalam format berikut:
+            <ol type="1">
+                <li>Bulan: Januari, Februari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember</li>
+                <li>Produk A: 120, 150, 180, 220, 200, 250, 300, 280, 350, 400, 450, 500</li>
+                <li>Produk B: 90, 110, 130, 150, 140, 160, 180, 200, 210, 230, 250, 270</li>
+                <li>Produk C: 70, 85, 90, 100, 120, 140, 160, 180, 190, 210, 230, 250</li>
+            </ol>
+        </p>
+
+        <p>
+            Sales manager ingin membuat beberapa visualisasi untuk menyampaikan informasi ini dengan jelas kepada tim. Langkah-langkah yang diinginkan adalah sebagai berikut:
+            <ol type="1">
+                <li><b>Membuat Plot Time Series</b>: Buat grafik time series untuk menunjukkan tren penjualan setiap produk sepanjang tahun. Gunakan warna yang berbeda untuk setiap produk dan beri label sumbu yang jelas.</li>
+                <li><b>Menambahkan Subplot</b>: Dalam satu figur, buat subplot yang menampilkan grafik penjualan produk A dan B dalam satu grafik, dan grafik penjualan produk C dalam subplot yang terpisah.</li>
+                <li><b>Pengaturan Tampilan</b>: Sesuaikan tampilan grafik dengan menambahkan judul, garis grid, dan mengatur ukuran font agar lebih mudah dibaca.</li>
+                <li><b>Menambahkan Anotasi</b>: Tambahkan anotasi pada grafik untuk menandai bulan dengan penjualan tertinggi dan terendah untuk setiap produk, beserta catatan singkat tentang penyebab fluktuasi tersebut (misalnya, promosi musiman, peluncuran produk baru, dll.).</li>
+            </ol>
+        </p>
+
+        <p style="font-size: x-large; margin-top: 5%;">
+            <b>Tugas anda adalah:</b>
+            <ul>
+                <li><b>Membuat langkah-langkah spesifik yang dapat diambil untuk menyelesaikan setiap poin di atas menggunakan Matplotlib.</b></li>
+                <li><b>Sertakan contoh kode untuk membantu menjelaskan proses visualisasi yang diinginkan.</b></li>
+            </ul>
+        </p>
+
+        <h1 style="margin-top: 5%;">
+            <span class="garis-bawah">Output yang diharapkan</span>
+        </h1>
+        <p>
+            Output dari instruksi di atas, dapat anda lihat pada gambar berikut:
+        </p>
+        <br>
+        <p style="font-size: x-large; color: navy; margin-left: 21%;">
+            <b>Plot Tren Penjualan Produk A, B dan C</b>
+        </p>
+        <iframe src="https://drive.google.com/file/d/1ugeGCXj1z6XGP1DPk6okrgMm7uxTwxVG/preview" width="75%" height="580px" frame-border="0" style="margin-left: 10%; margin-bottom: 3%;" alt="Hasil Analisis"></iframe>
+        
+
+
+    </div>
+
+
+    
+    </body>
+
+
+</html>

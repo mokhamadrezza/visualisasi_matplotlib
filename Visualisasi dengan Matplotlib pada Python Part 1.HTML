@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisasi dengan Matplotlib pada Python - Part 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="Judul">Visualisasi dengan Matplotlib pada Python - Part 1</h1>
+        </div>
+<style>
+    
+body{
+    background-color: #fff;
+}
+
+.container{
+    background-color: #fff;
+    padding-top: 4%;
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-bottom: 3%;
+}
+
+.container .header{
+    color: black;
+}
+
+.Judul{
+    font-size: 38px;
+    text-align: left;
+    font-weight: bolder;
+    margin: 1%;
+    font-family: Calibri, Arial, sans-serif;
+}
+
+.content-box{
+    max-width: 90vw;
+    min-width: 20%;
+    border: 0.1vw solid #4471C4;
+    background-color: #fff;
+    box-shadow: 0.4vw 0.4vw 1.5vw rgba(0, 0, 0, 0.1);
+    font-family: Calibri, Arial, sans-serif;
+    margin-left: 1%;
+    margin-bottom: 3%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 1%;
+    text-align: justify;
+}
+
+.content-box h2{
+    font-size: xx-large;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: inline-flex;
+    align-content: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 90vw;
+}
+
+.content-box ul{
+    list-style-type: square;
+    padding-left: 2%;
+    margin-left: 1%;
+    font-size: 16px;
+    line-height: 2.5;
+    max-width: 90vw;
+}
+
+.content-box ul li{
+    max-width: 90vw;
+}
+
+.top-box{
+    margin-bottom: 0.5%;
+    max-width: 90vw;
+}
+
+.no-bullets{
+    list-style-type: none;
+    padding-left: 0;
+    max-width: 90vw;
+}
+
+.no-bullets ul{
+    padding-left: 3%; /* Menambahkan indentasi untuk daftar bersarang */
+    max-width: 90vw;
+}
+
+.note-box{
+    display: flex;
+    max-width: 90vw;
+    height: auto;
+    padding: 1%;
+    border-radius: 1vw;
+    border: 0.1vw solid #000;
+    background-color: #CFE1F3; /* Warna latar belakang seperti catatan */
+    box-shadow: 0.3vw 0.3vw 1vw rgba(0, 0, 0, 0.1);
+    font-family: Calibri, Arial, sans-serif;
+    position: relative;
+}
+
+.note-box span{
+    margin-top: 0%;
+    font-size: 1.6vw;
+    font-family: calibri, Arial, sans-serif;
+    text-align: justify;
+    max-width: 90vw;
+    font-weight: bolder;
+}
+
+.note-box h1{
+    margin-top: 0;
+    max-width: fit-content;
+    font-size: 30px;
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+}
+
+.note-box p{
+    margin: 0;
+    max-width: 90vw;
+    font-size: 1.4vw;
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+}
+/* Style for h1 */
+h1{
+    font-size: 36px; /* Ukuran font 18 */
+    font-weight: bolder;
+    font-family: Calibri, Arial, sans-serif;
+    color: #1f2855;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    margin-left: 1%;
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    text-align: justify;
+    max-width: 90vw;
+}
+/* Style for h2 */
+h2{
+    font-size: 16px; /* Ukuran font 16 */
+    font-weight: bolder;
+    font-family: Calibri, Arial, sans-serif;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    text-align: justify;
+    max-width: 90vw;
+}
+/*Style for h3 */
+h3 {
+    font-size: 14px; /* Ukuran font 14 */
+    font-weight: bolder;
+    font-family: calibri, Arial, sans-serif;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    line-height: 1.5; /*Jarak spasi 1/5 */
+    text-align: justify;
+    max-width: 90vw;
+}
+/* Style for p */
+p{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 18px; /* Ukuran font 18 */
+    text-align: justify;
+    margin-right: 1%;
+    margin-left: 1%;
+    max-width: 90vw;
+}
+/* Style for ul and ol */
+ul, ol{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    list-style-type: decimal;
+    font-size: 18px; /* Ukuran font 18 */
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 5%;
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+    max-width: 90vw;
+}
+/* Style for li */
+li{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    text-align: justify;
+    margin-right: 1%;
+    max-width: 90vw;
+}
+
+.small-text{
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    text-align: center;
+    font-size: 1vw;
+}
+
+.large-text {
+    line-height: 1.5; /* Jarak Spasi 1.5 */
+    font-family: Calibri, Arial, sans-serif;
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bolder;
+    vertical-align: top;
+}
+
+.Tools{
+    max-width: 85%;
+    height: auto;
+    display: block;
+    margin-left: 30%;
+    margin-top: 15pt;
+    margin-bottom: 15pt;
+}
+
+.Tipe{
+    max-width: 85%;
+    height: auto;
+    display: block;
+    margin-left: 0%;
+    margin-top: 15pt;
+    margin-bottom: 15pt;
+}
+
+.pic {
+    display: block;
+    margin: 0;
+    padding: 20px;
+    height: auto;
+}
+
+iframe{
+    max-width: 100%;
+    min-height: auto;
+    margin-top: 1%;
+    margin-bottom: 1.5%;
+    margin-right: 1%;
+    margin-left: 2%;
+    border: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+table, th, td {
+    border: 0.1vw solid black;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    line-height: 1.5; /* Jarak spasi 1.5 */
+    font-size: 1.2vw;
+}
+th {
+    background-color: #2796a3; /* Warna Latar Belakang untuk Baris Pertama */
+    color: white;
+    text-align: center;
+    font-size: 1.2vw;
+}
+tr:hover {
+    background-color: beige;
+}
+
+font {
+    max-width: 100%;
+}
+
+.kotak {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    padding: 1.5vw;
+    line-height: 1.5;
+    width: 85%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    background-color: grey;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.teks-tomato{
+    color: tomato;
+    font-weight: bold;
+}
+
+.teks-skyblue{
+    color: skyblue;
+    font-weight: bold;
+}
+
+.teks-sandybrown{
+    color: sandybrown;
+    font-weight: bold;
+}
+
+.margin-left{
+    margin-left: 7%;
+    font-weight: bold;
+}
+
+.margin-left2{
+    margin-left: 5%;
+    color: skyblue;
+    font-weight: bold;
+}
+
+.margin-left3{
+    margin-left: 19%; 
+    color: skyblue;
+    font-weight: bold;
+}
+
+</style>
+
+<div class="content-box"> <!-- Berisi Poin-poin Konten-->
+    <h2>
+        <img src="https://drive.google.com/thumbnail?id=1OSwy6Vn5jv8ERj5uV-d5abA8LFGNXV9x" alt="Content Image" style="vertical-align: middle; margin-right: 10px; width: 60px; height: 50px; padding-top: 10px;">Content
+    </h2>
+    <ul class="no-bullets" style="color: blue;">
+        <li><a href="#pengenalan-matplotlib" style="color: blue;">Pengenalan Matplotlib</a></li>
+        <li><a href="#tampilan-matplotlib" style="color: blue;">Tampilan Matplotlib</a></li>
+        <li><a href="#axes-matplotlib" style="color: blue;">Axes pada Matplotlib</a></li>
+        <li><a href="#plot-matplotlib" style="color: blue;">Mengatur Plot Matplotlib</a></li>
+        <li><a href="#subplot-matplotlib" style="color: blue;">Subplot pada Matplotlib</a></li>
+        <li><a href="#visualisasi-datatimeseries" style="color: blue;">Visualisasi Data Time Series dengan Matplotlib</a></li>
+        <li><a href="#tampilan-visualisasi" style="color: blue;">Pengaturan Tampilan pada Visualisasi Data Time Series</a></li>
+        <li><a href="#fungsi-plot" style="color: blue;">Fungsi untuk Plot Time Series</a></li>
+        <li><a href="#anotasi-visualisasi" style="color: blue;">Anotasi pada Visualisasi Data Time Series</a></li>
+    </ul>
+     
+</div>
+
+<div class="content">
+    
+    <!--Pengenalan Matplotlib-->
+    <h1 id="pengenalan-matplotlib">Pengenalan Matplotlib</h1>
+    <p>
+        <b>Matplotlib adalah salah satu pustaka (library) Python yang paling populer untuk visualisasi data</b>. Dikenal karena kemampuannya untuk menghasilkan grafik yang berkualitas tinggi dan mendukung berbagai jenis plot, Matplotlib menjadi alat penting bagi data scientist, peneliti, dan siapa saja yang bekerja dengan data.
+    </p>
+    <iframe src="https://drive.google.com/file/d/1nU5-MQZVi1Fb6vSM6dqdKtLuXTFPtDkX/preview" width="60%" height="330px" style="margin-left: 20%;" frame-border="0" alt="Gambar 1"></iframe>
+
+    <p>
+        Matplotlib memungkinkan pembuatan berbagai plot dengan mudah, termasuk plot garis, histogram, batang, kotak, dan radial, dengan fleksibilitas tinggi untuk gaya yang disempurnakan dan anotasi yang disesuaikan.
+    </p>
+
+
+    <!--Tampilan Matplotlib-->
+    <h1 id="tampilan-matplotlib">Tampilan Matplotlib</h1>
+    <p>
+        Pada proses awal pembuatan visualisasi, pengguna perlu mendefinisikan canvas terlebih dahulu, dengan cara meng-import library matplotlib. Ini akan memungkinkan pengguna untuk menggunakan berbagai fungsi dan metode yang tersedia dalam matplotlib untuk membuat dan menyesuaikan grafik.
+    </p>   
+
+    <p>Berikut adalah contoh kode python untuk matplotlib</b>:</p>
+    <p class="kotak" style="color: #fff;">
+        # Import library matplotlib
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        <span class="teks-tomato">plt.subplots()</span> memiliki fungsi untuk mendefinisikan canvas dan letaknya di mana, <span class="teks-tomato">fig</span> adalah canvas sedangkan, <span class="teks-tomato">ax</span> adalah letak posisi gambar dalam canvas.
+    </p>
+    <iframe src="https://drive.google.com/file/d/1B3e7Igu6OiHivGfn-bvE1SvRyaiunPFK/preview" width="55%" height="300px" style="margin-left: 20%;" frame-border="0" alt="Gambar 2"></iframe>
+
+    <p>
+        Pada matplotlib garis horizontal merupakan sumbu X sedangkan garis vertikal adalah sumbu Y.
+    </p>
+
+
+    <!--Axes pada Matplotlib-->
+    <h1 id="axes-matplotlib">Axes pada Matplotlib</h1>
+    <p>
+        Dalam konteks Matplotlib, "<b>axes</b>" mengacu pada area di dalam figure di mana grafik digambar. Setiap figure dapat memiliki satu atau lebih axes, dan masing-masing axes dapat berisi satu grafik atau lebih. 
+        Axes adalah unit paling dasar dan fleksibel untuk membuat subplot. Axes memungkinkan penempatan plot di lokasi mana pun.
+    </p>
+    <p>
+        Berikut adalah contoh kode penggunaan axes pada matplotlib:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span> # Ukuran canvas
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y = [2, 3, 5, 7, 11]</span>
+        <br>
+        <br># Membuat plot pada axes
+        <br><span class="teks-skyblue">ax.plot(x, y, marker='o')</span>
+        <br>
+        <br># Menambahkan judul dan label
+        <br><span class="teks-skyblue">ax.set_title('Contoh Axes dengan subplots')</span>
+        <br><span class="teks-skyblue">ax.set_xlabel('X Axis')</span>
+        <br><span class="teks-skyblue">ax.set_ylabel('Y Axis')</span>
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1MHlhCV4DhMS9bjz499D5PkFO_X8dyg9D/preview" width="55%" height="300px" style="margin-left: 20%;" frame-border="0" alt="Gambar 3"></iframe>
+
+    <p>
+        Untuk menambahkan banyak plot dalam satu gambar pengguna hanya perlu memanggil fungsi <span class="teks-tomato">ax.plot()</span> dalam 1 cell code yang sama sebanyak plot yang ingin ditampilkan dalam satu gambar selanjutnya tinggal menyesuaikan data yang ingin ditampilkan dalam satu gambar.
+    </p>
+    <p>
+        Syntax di bawah ini adalah contoh membuat banyak plot dalam satu gambar.
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span> # Ukuran canvas
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y1 = [2, 3, 5, 7, 11]</span> # Data pertama
+        <br><span class="teks-skyblue">y2 = [1, 4, 6, 8, 10]</span> # Data kedua
+        <br>
+        <br># Membuat plot pada axes
+        <br><span class="teks-skyblue">ax.plot(x, y1, marker='o', label='Data 1')</span> # Plot pertama
+        <br><span class="teks-skyblue">ax.plot(x, y2, marker='s', label='Data 2')</span> # Plot kedua
+        <br>
+        <br># Menambahkan judul dan label
+        <br><span class="teks-skyblue">ax.set_title('Contoh Axes dengan Banyak Plot')</span>
+        <br><span class="teks-skyblue">ax.set_xlabel('X Axis')</span>
+        <br><span class="teks-skyblue">ax.set_ylabel('Y Axis')</span>
+        <br><span class="teks-skyblue">ax.legend()</span> # Menampilkan legenda
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1muh_efcGSwiWoy_FpSgWrNeQjMf43OQu/preview" width="70%" height="370px" style="margin-left: 15%;" frame-border="0" alt="Gambar 4"></iframe>
+
+    <p>
+        Cara yang sama juga dapat dimanfaatkan untuk membuat banyak plot dari satu data dengan berbagai kolom yang ingin divisualisasikan dalam satu gambar, dengan cara memanggil <span class="teks-tomato">ax.plot</span> berkali kali dalam satu cell yang sama kemudian tinggal menyesuaikan kolom apa yang akan ditampilkan dalam satu plot.
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span> # Ukuran canvas
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y1 = [2, 3, 5, 7, 11]</span> # Data pertama
+        <br><span class="teks-skyblue">y2 = [1, 4, 6, 8, 10]</span> # Data kedua
+        <br><span class="teks-skyblue">y3 = [3, 5, 7, 9, 12]</span> # Data ketiga
+        <br>
+        <br># Membuat plot pada axes
+        <br><span class="teks-skyblue">ax.plot(x, y1, marker='o', label='Data 1')</span> # Plot pertama
+        <br><span class="teks-skyblue">ax.plot(x, y2, marker='s', label='Data 2')</span> # Plot kedua
+        <br><span class="teks-skyblue">ax.plot(x, y3, marker='^', label='Data 3')</span> # Plot ketiga
+        <br>
+        <br># Menambahkan judul dan label
+        <br><span class="teks-skyblue">ax.set_title('Contoh Axes dengan Banyak Plot')</span>
+        <br><span class="teks-skyblue">ax.set_xlabel('X Axis')</span>
+        <br><span class="teks-skyblue">ax.set_ylabel('Y Axis')</span>
+        <br>
+        <br># Menambahkan legenda
+        <br><span class="teks-skyblue">ax.legend()</span> # Menampilkan legenda
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1Rkxd4hrDLTBjceBbhrJkCSqYFEOy9r3a/preview" width="70%" height="400px" style="margin-left: 15%;" frame-border="0" alt="Gambar 5"></iframe>
+
+
+    <!--Mengatur Plot Matplotlib-->
+    <h1 id="plot-matplotlib">Mengatur Plot Matplotlib</h1>
+    <p>
+        <b>Dalam Matplotlib, plot dapat diatur sesuai dengan kebutuhan pengguna melalui berbagai parameter dan fungsi yang tersedia. Mulai dari pengaturan tampilan seperti warna, garis, marker, hingga pengaturan label pada sumbu-sumbu X dan Y, serta judul plot.</b>
+    </p>
+    <p>
+        Pengguna dapat melakukan penyesuaian gambar plot dengan menambahkan kata kunci perintah dalam matplotlib, seperti menambahkan marker dengan warna dan bentuk yang bisa disesuaikan dan membuat garis putus-putus pada plot garis.
+    </p>
+
+    <p>
+        Berikut adalah contoh kode mengatur plot matplotlib:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span> # Ukuran canvas
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y1 = [2, 3, 5, 7, 11]</span> # Data pertama
+        <br><span class="teks-skyblue">y2 = [1, 4, 6, 8, 10]</span> # Data kedua
+        <br>
+        <br># Membuat plot pada axes dengan warna
+        <br><span class="teks-skyblue">ax.plot(x, y1, marker='o', label='Data 1', color='blue')</span> # Plot pertama
+        <br><span class="teks-skyblue">ax.plot(x, y2, marker='s', label='Data 2', color='orange')</span> # Plot kedua
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <P>
+        Output yang dihasilkan adalah sebagai berikut:
+    </P>
+    <iframe src="https://drive.google.com/file/d/1IHzFbTuWFlqOKWN6iGEYcWOM3VJ8MEjU/preview" width="60%" height="340px" style="margin-left: 20%;" frame-border="0" alt="Gambar 6"></iframe>
+
+    <p>
+        Pada matplotlib, pengguna tidak hanya dapat membuat banyak plot dalam satu gambar tetapi juga dapat mengatur jenis garis pada line plot. 
+        Jenis garis dapat berupa garis solid atau garis putus-putus dengan menggunakan parameter linestyle  pada matplotlib. 
+        Dokumentasi mengenai linestyle dapat ditemukan pada link berikut: <a href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html" target="_blank" style="color: blue; font-weight: bold;">Linestyle Matplotlib</a>
+    </p>
+
+    <p>
+        Berikut adalah contoh untuk penggunaan linestyle pada matplotlib:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span> # Ukuran canvas
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span>
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y = [2, 3, 5, 7, 11]</span>
+        <br>
+        <br># Membuat plot pada axes dengan linestyle
+        <br><span class="teks-skyblue">ax.plot(x, y, marker='o', linestyle='--')</span> # Menggunakan garis putus-putus
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1Ar3IaKOGCOpjxJAFZT9EWsUnVL5eSEt6/preview" width="70%" height="400px" style="margin-left: 15%;" frame-border="0" alt="Gambar 7"></iframe>
+
+    <p>
+        Pada matplotlib, pengguna dapat mengatur warna yang diinginkan pada plot dengan menggunakan parameter color untuk mengubah warna pada plot. 
+        Dokumentasi color dapat ditemukan pada link <a href="https://matplotlib.org/stable/gallery/color/index.html" target="_blank" style="color: blue; font-weight: bold;">https://matplotlib.org/stable/gallery/color/index.html</a>.
+        Berikut adalah contoh mengatur warna pada matplotlib:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span> # Ukuran canvas
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y = [2, 3, 5, 7, 11]</span>
+        <br>
+        <br># Membuat plot pada axes dengan linestyle
+        <br><span class="teks-skyblue">ax.plot(x, y, marker='o', linestyle='--', color='red')</span> # Menggunakan garis putus-putus
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1A2POyn836vMy_cJ8WYzfUJQqnnc03Ieg/preview" width="55%" height="330px" style="margin-left: 20%;" frame-border="0" alt="Gambar 8"></iframe>
+
+    <p>
+        Pada matplotlib pengguna dapat mengatur nama (label) pada setiap sumbu dengan menggunakan parameter <span class="teks-tomato">set_xlabel</span> untuk menampilkan label pada sumbu X dan <span class="teks-tomato">set_ylabel</span> untuk menampilkan label pada sumbu Y. 
+        Berikut adalah contoh menampilkan label pada sumbu X dan Y:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span> # Ukuran canvas
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y = [2, 3, 5, 7, 11]</span>
+        <br>
+        <br># Membuat plot pada axes dengan linestyle
+        <br><span class="teks-skyblue">ax.plot(x, y, marker='o', linestyle='--', color='red')</span> # Menggunakan garis putus-putus
+        <br>
+        <br># Menambahkan label
+        <br><span class="teks-skyblue">plt.xlabel('X Axis')</span>
+        <br><span class="teks-skyblue">plt.ylabel('Y Axis')</span>
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1b1vCsjSAUQxrjisAxab8w68wG9Yw7pIN/preview" width="70%" height="380px" style="margin-left: 15%;" frame-border="0" alt="Gambar 9"></iframe>
+
+    <p>
+        Selain itu pada matplotlib pengguna juga dapat menambahkan sebuah judul dalam gambar dengan menggunakan parameter <span class="teks-tomato">set_title</span> untuk mengatur dan menambahkan title pada gambar visualisasi. 
+        Berikut adalah contoh menambahkan judul pada plot:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br># Membuat figure dan axes
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(figsize=(8, 6))</span> # Ukuran canvas
+        <br>
+        <br># Data
+        <br><span class="teks-skyblue">x = [1, 2, 3, 4, 5]</span>
+        <br><span class="teks-skyblue">y = [2, 3, 5, 7, 11]</span>
+        <br>
+        <br># Membuat plot pada axes dengan linestyle
+        <br><span class="teks-skyblue">ax.plot(x, y, marker='o', linestyle='--', color='red')</span> # Menggunakan garis putus-putus
+        <br>
+        <br># Menambahkan label
+        <br><span class="teks-skyblue">plt.xlabel('X Axis')</span>
+        <br><span class="teks-skyblue">plt.ylabel('Y Axis')</span>
+        <br>
+        <br># Menambahkan judul
+        <br><span class="teks-skyblue">plt.title('Contoh Plot dengan Matplotlib')</span>
+        <br>
+        <br># Menampilkan grafik
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1qL7ofYX62VReIm2hzid30IxzArlOU87U/preview" width="65%" height="380px" style="margin-left: 15%;" frame-border="0" alt="Gambar 10"></iframe>
+
+
+    <!--Subplot pada Matplotlib-->
+    <h1 id="subplot-matplotlib">Subplot pada Matplotlib</h1>
+    <p>
+        Terkadang dalam membuat banyak plot dalam satu kanvas tidaklah efektif karena plot akan saling tumpang tindih. 
+        Untuk mengatasi ini, pada matplotlib telah menyediakan sebuah method untuk memisahkan gambar pada kanvas berbeda, method ini disebut dengan subplots.
+    </p>
+    <iframe src="https://drive.google.com/file/d/1Shu6LQsP02i18Jh2q6v_NMYJMxeYSJEj/preview" width="65%" height="350px" style="margin-left: 20%;" frame-border="0" alt="Gambar 11"></iframe>
+
+    <p>
+        Subplot berarti group axes yang terdapat dalam satu gambar matplotlib. <span class="teks-tomato">subplots()</span> berfungsi membantu dalam membuat beberapa tata letak dan memberikan kontrol atas semua plot individu yang dibuat.
+    </p>
+    <p>
+        Dalam membuat banyak gambar dalam satu kanvas, dibutuhkan fungsi <span class="teks-tomato">plt.subplots(nrow,ncol)</span> dari matplotlib di mana <b>nrow</b> menunjukkan jumlah baris yang ingin dibuat, dan <b>ncol</b> menunjukkan jumlah kolom yang ingin dibuat dalam satu canvas. 
+        Berikut adalah contoh membuat kanvas yang memuat 6 gambar dengan rincian 3 baris dan 2 kolom:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        #membuat subplots 3 baris dan 2 kolom
+        <br><span class="teks-skyblue">fig,ax = plt.subplots(3,2)</span>
+        <br>
+        <br>#memanggil plot
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1rbiIH-VF3wH64aUrps3sw8OgVR-gpGjW/preview" width="55%" height="350px" style="margin-left: 20%;" frame-border="0" alt="Gambar 12"></iframe>
+
+    <p>
+        Setelah mengatur banyak gambar yang akan dimuat dalam satu canvas, maka tahap selanjutnya adalah memasukkan plot pada tiap-tiap gambar dalam canvas dengan mengatur penulisan index untuk mengatur tata letak plot dalam sebuah gambar. 
+        Berikut adalah contoh penulisan <b>ax[0,0]</b> yang memiliki makna bahwa plot yang akan dibuat dimasukkan ke dalam gambar pada letak baris ke 0 dan kolom ke 0.
+    </p>
+
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-sandybrown">import numpy as np</span>
+        <br>
+        <br># Data contoh
+        <br><span class="teks-skyblue">x = np.linspace(0, 10, 100)</span>
+        <br><span class="teks-skyblue">y = np.sin(x)</span>
+        <br>
+        <br># Membuat subplots 3 baris dan 2 kolom
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(3, 2)</span>
+        <br>
+        <br># Menambahkan plot pada posisi (0, 0) saja
+        <br><span class="teks-skyblue">ax[0, 0].plot(x, y, color='blue')</span>
+        <br>
+        <br># Menampilkan plot
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1HLrO2zgBxDFOYzjxjOA6Mzr_6UQRxtF-/preview" width="70%" height="380px" style="margin-left: 15%;" frame-border="0" alt="Gambar 13"></iframe>
+
+    <p>
+        Membuat banyak plot dalam satu gambar dari berbagai data juga mungkin dilakukan dalam subplot. Berikut adalah contoh membuat subplot terdiri dari 2 baris dan 1 kolom, dan membuat plot dari dua data berbeda:
+    </p>
+
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br><span class="teks-sandybrown">import numpy as np</span>
+        <br>
+        <br># Data contoh
+        <br><span class="teks-skyblue">x = np.linspace(0, 10, 100)</span>
+        <br><span class="teks-skyblue">y1 = np.sin(x)</span>
+        <br><span class="teks-skyblue">y2 = np.cos(x)</span>
+        <br><span class="teks-skyblue">y3 = np.tan(x) * 0.1</span>
+        <br>
+        <br># Membuat subplots 2 baris dan 1 kolom
+        <br><span class="teks-skyblue">fig, ax = plt.subplots(2, 1)</span>
+        <br>
+        <br># Subplot pertama: beberapa garis
+        <br><span class="teks-skyblue">ax[0].plot(x, y1, color='blue', label='Sin(x)')</span>
+        <br><span class="teks-skyblue">ax[0].plot(x, y2, color='red', label='Cos(x)')</span>
+        <br><span class="teks-skyblue">ax[0].plot(x, y3, color='green', label='Tan(x)')</span>
+        <br>
+        <br># Subplot kedua: beberapa garis
+        <br><span class="teks-skyblue">ax[1].plot(x, y1**2, color='purple', label='Sin^2(x)')</span>
+        <br><span class="teks-skyblue">ax[1].plot(x, y2**2, color='orange', label='Cos^2(x)')</span>
+        <br><span class="teks-skyblue">ax[1].plot(x, y3**2, color='brown', label='Tan^2(x)')</span>
+        <br>
+        <br># Menampilkan plot
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1CqcKSQmiKn-5UouTirYN16tIPl4sW501/preview" width="80%" height="450px" style="margin-left: 15%;" frame-border="0" alt="Gambar 14"></iframe>
+
+    <p>
+        Pada penulisan <b>ax[0]</b> dan <b>ax[1]</b> dituliskan sebanyak tiga kali, hal ini mengindikasikan telah meletakkan tiga plot dalam satu gambar.
+    </p>
+
+
+    <!--Visualisasi Data Time Series dengan Matplotlib-->
+    <h1 id="visualisasi-datatimeseries">Visualisasi Data Time Series dengan Matplotlib</h1>
+    <p>
+        <b>Time Series adalah serial dari kumpulan data yang teratur oleh urutan waktu. Frekuensi urutan waktu yang dimiliki oleh data time series bisa meliputi tahunan, bulanan, jam, atau bahkan mili-detik. 
+            Selama data tersebut disimpan dalam urutan waktu, data itu adalah data time series.</b>
+    </p>
+    <p>
+        Pada contoh di bawah ini akan digunakan parameter <span class="teks-tomato">parse_dates</span> yang berfungsi mengubah tipe data yang berbasis waktu menjadi tipe <b>timestamp</b> dan <b>index_col</b> untuk membuat kolom menjadi sebuah index pada dataset.
+    </p>
+
+    <p class="kotak" style="color: #fff;">
+        #import data climate_change.csv
+        <br><span class="teks-sandybrown">import pandas as pd</span>
+        <br>
+        <br><span class="teks-skyblue">climate_change = pd.read_csv("climate_change.csv", parse_dates=["date"], index_col="date")</span>
+        <br><span class="teks-sandybrown">climate_change</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1FFqUGvYpdqosDnzGNx7r_ZWpZmT1ypt9/preview" width="40%" height="330px" style="margin-left: 30%;" frame-border="0" alt="Gambar 15"></iframe>
+
+    <p>
+        Untuk melihat atau memeriksa index dari dataframe menggunakan python, pengguna dapat menggunakan fungsi index dengan cara <span class="teks-tomato">nama_dataframe.index</span> seperti contoh di bawah ini:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Cek index dari data climate_change
+        <br><span class="teks-sandybrown">climate_change.index</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1B3hA68KyUWUoV4C0ul9xK1xew-Qvvn8n/preview" width="90%" height="230px" style="margin-left: 5%;" frame-border="0" alt="Gambar 16"></iframe>
+
+    <p>
+        Untuk mengambil kolom tertentu pada dataframe dapat dilakukan dengan cara yang disebut slicing. Berikut adalah contoh mengambil kolom <b>relative_temp</b> dari data frame <span class="teks-tomato">climate_change</span>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Temperature relative
+        <br><span class="teks-sandybrown">climate_change["relative_temp"]</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1Axo-6dU24xBkBG5mIDLZk28QC9OzA18o/preview" width="75%" height="350px" style="margin-left: 15%;" frame-border="0" alt="Gambar 17"></iframe>
+
+    <p>
+        Plot time series merupakan sebuah line plot di mana sumbu X-nya adalah pergerakan waktu (time series) dan sumbu Y-nya adalah sebuah nilai tertentu yang ingin kita lihat pergerakannya dari waktu ke waktu. 
+        Untuk membangun plot time series dari kolom <b>CO<sub>2</sub></b> dapat menggunakan kode di bawah ini:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Import library matplotlib.pyplot
+        <br><span class="teks-sandybrown">import matplotlib.pyplot as plt</span>
+        <br>
+        <br>#membuat subplot
+        <br><span class="teks-skyblue">fig,ax = plt.subplots()</span>
+        <br>
+        <br>#membuat plot
+        <br><span class="teks-skyblue">ax.plot(climate_change.index, climate_change["co2"])</span>
+        <br><span class="teks-skyblue">ax.set_xlabel("year")</span>
+        <br><span class="teks-skyblue">ax.set_ylabel("CO2 (ppm)")</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1cINuXjRaILe8oA3a4Kee3QBElFVRYyM6/preview" width="55%" height="310px" style="margin-left: 20%;" frame-border="0" alt="Gambar 18"></iframe>
+
+    <p>
+        Pada contoh di atas sumbu X-nya dipresentasikan oleh tahun-bulan-hari (kolom Time) sedangkan sumbu Y-nya adalah konsentrasi (ppm) dari CO<sub>2</sub>. 
+        Plot di atas menceritakan pergerakan konsentrasi CO<sub>2</sub> dari tahun 1960 hingga 2020.
+    </p>
+
+    <p>
+        Untuk melihat nilai pada periode tertentu atau interval waktu tertentu, pengguna perlu melakukan sebuah indexing atau mengambil index tertentu dengan catatan kolom waktu telah dijadikan indexing terlebih dahulu. 
+        Berikut adalah contoh untuk mengambil rentang waktu tertentu pada python:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Filter rentang waktu dari tahun 1960 hingga 1969
+        <br><span class="teks-skyblue">sixties = climate_change["1960-01-01":"1969-12-31"]</span>
+        <br>
+        <br>#membuat subplot
+        <br><span class="teks-skyblue">fig,ax = plt.subplots()</span>
+        <br>
+        <br>#membuat plot
+        <br><span class="teks-skyblue">ax.plot(sixties.index, sixties["co2"])</span>
+        <br><span class="teks-skyblue">ax.set_xlabel("year")</span>
+        <br><span class="teks-skyblue">ax.set_ylabel("CO2 (ppm)")</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1smI78gC-C7-EHXLXsWoK9p1nDTlekXwu/preview" width="70%" height="370px" style="margin-left: 15%;" frame-border="0" alt="Gambar 19"></iframe>
+
+    <p>
+        Pada contoh di atas <b>climate_change[“1960-01-01”:“1969-12-31”]</b> memiliki arti mengambil nilai pada rentang waktu <b>1960-01-01</b> hingga <b>1969-12-31</b> dan <span class="teks-tomato">sixties.index</span> hanya mengambil index pada dataframe <b>sixties</b>.
+    </p>
+
+    <p>
+        Untuk membuat dua plot time series dalam satu gambar pengguna dapat melakukan menggunakan konsep yang sama dengan membuat banyak plot dalam satu gambar, dengan cara memanggil berulang kali <span class="teks-tomato">ax.plot()</span> dan menyesuaikan data yang ingin ditampilkan dalam 1 gambar. 
+        Berikut adalah contoh membuat dua plot time series dari data <b>climate_change</b> dengan kolom yang digunakan adalah <b>CO<sub>2</sub></b> dan <b>relative_temp</b>.
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Membuat subplot
+        <br><span class="teks-skyblue">fig,ax = plt.subplots()</span>
+        <br>
+        <br># Membuat plot
+        <br><span class="teks-skyblue">ax.plot(climate_change.index, climate_change["relative_temp"])</span>
+        <br><span class="teks-skyblue">ax.plot(climate_change.index, climate_change["co2"])</span>
+        <br><span class="teks-skyblue">ax.set_xlabel("year")</span>
+        <br><span class="teks-skyblue">ax.set_ylabel("CO2 (ppm)/Relative Temperature")</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1YrYrbDzVIYCjrfgRAjorVMUyAQGKX68t/preview" width="70%" height="370px" style="margin-left: 15%;" frame-border="0" alt="Gambar 20"></iframe>
+
+    <p>
+        Pada visualisasi data timeseries, pengguna juga dapat menampilkan dua sumbu Y berbeda pada satu gambar dengan menggunakan fungsi <span class="teks-tomato">.twinx()</span> yang telah disediakan oleh matplotlib, fungsi ini digunakan untuk menampilkan dua plot dalam satu gambar yang masing-masing plot menjelaskan nilai tertentu dan memiliki skala yang berbeda. 
+        Berikut adalah contoh penggunaan <span class="teks-tomato">.twinx()</span> pada matplotlib:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Membuat subplot
+        <br><span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br>
+        <br># Membuat plot
+        <br><span class="teks-skyblue">ax.plot(climate_change.index, climate_change["co2"])</span>
+        <br><span class="teks-skyblue">ax.set_xlabel('Time')</span>
+        <br><span class="teks-skyblue">ax.set_ylabel('CO2 (ppm)')</span>
+        <br>
+        <br># Membuat dua sumbu-y
+        <br><span class="teks-skyblue">ax2 = ax.twinx()</span>
+        <br><span class="teks-skyblue">ax2.plot(climate_change.index, climate_change["relative_temp"])</span>
+        <br><span class="teks-skyblue">ax2.set_ylabel('Relative temperature (Celsius)')</span>
+        <br>
+        <br># Memanggil plot
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1JTKfBhRLCW7ytHhlAQMytLTNEI_hpbcY/preview" width="90%" height="460px" style="margin-left: 5%;" frame-border="0" alt="Gambar 21"></iframe>
+
+
+    <!--Pengaturan Tampilan pada Visualisasi Data Time Series-->
+    <h1 id="tampilan-visualisasi">Pengaturan Tampilan pada Visualisasi Data Time Series</h1>
+    <p>
+        Pengaturan tampilan ini memungkinkan pengguna untuk menyesuaikan penampilan visual dari plot sesuai dengan preferensi atau kebutuhan analisis mulai dari warna plot dan warna ticks. 
+        Selain menampilkan dua sumbu Y berbeda dalam satu gambar, pengguna juga dapat mengatur warna garis pada line plot salah satu atau dua-duanya dalam satu gambar, dengan menambahkan parameter <span class="teks-tomato">color</span> dalam <b>ax</b> dan <b>ax2</b>. 
+        Berikut adalah contoh kode penggunaan parameter <span class="teks-tomato">color</span> dalam <b>ax</b> dan <b>ax2</b> pada python:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Membuat subplot
+        <br><span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br>
+        <br># Membuat plot
+        <br><span class="teks-skyblue">ax.plot(climate_change.index, climate_change["co2"], color='blue')</span>
+        <br><span class="teks-skyblue">ax.set_xlabel('Time')</span>
+        <br><span class="teks-skyblue">ax.set_ylabel('CO2 (ppm)', color='blue')</span>
+        <br>
+        <br># Membuat dua sumbu-y
+        <br><span class="teks-skyblue">ax2 = ax.twinx()</span>
+        <br><span class="teks-skyblue">ax2.plot(climate_change.index, climate_change["relative_temp"], color='red')</span>
+        <br><span class="teks-skyblue">ax2.set_ylabel('Relative temperature (Celsius)', color='red')</span>
+        <br>
+        <br># Memanggil plot
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1Owso3hCPYeSoVz5_6ra1vNxR2F0upmAS/preview" width="70%" height="340px" style="margin-left: 15%;" frame-border="0" alt="Gambar 22"></iframe>
+
+    <p>
+        Selain mengatur warna tiap plot dalam satu gambar, pengguna juga dapat mengatur warna pada sumbu Y, dengan menggunakan fungsi <span class="teks-tomato">tick_params()</span> dengan menambahkan parameter colors untuk mengatur warna pada tiap sumbu Y. 
+        Berikut adalah contoh penggunaan <span class="teks-tomato">tick_params()</span> pada python:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Membuat subplot
+        <br><span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br>
+        <br># Membuat plot
+        <br><span class="teks-skyblue">ax.plot(climate_change.index, climate_change["co2"], color='blue')</span>
+        <br><span class="teks-skyblue">ax.set_xlabel('Time')</span>
+        <br><span class="teks-skyblue">ax.set_ylabel('CO2 (ppm)', color='blue')</span>
+        <br><span class="teks-skyblue">ax.tick_params('y', colors='blue')</span>
+        <br>
+        <br># Membuat dua sumbu-y
+        <br><span class="teks-skyblue">ax2 = ax.twinx()</span>
+        <br><span class="teks-skyblue">ax2.plot(climate_change.index, climate_change["relative_temp"], color='red')</span>
+        <br><span class="teks-skyblue">ax2.set_ylabel('Relative temperature (Celsius)', color='red')</span>
+        <br><span class="teks-skyblue">ax2.tick_params('y', colors='red')</span>
+        <br>
+        <br># Memanggil plot
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1wePFiwuKSha0sXRU4_7k8S_wUy4ILYhG/preview" width="75%" height="380px" style="margin-left: 15%;" frame-border="0" alt="Gambar 23"></iframe>
+
+
+    <!--Fungsi untuk Plot Time Series-->
+    <h1 id="fungsi-plot">Fungsi untuk Plot Time Series</h1>
+    <p>
+        <b>Membangun plot time series atau plot lainnya secara berulang dapat memakan waktu yang cukup lama, untuk itu pengguna dapat memanfaatkan fungsi pada python untuk untuk membuat plot time series secara berulang.</b>
+    </p>
+    <p class="kotak" style="color: #fff;">
+        # Mendefiniskan fungsi dengan nama plot_timeseries
+        <br><span class="teks-skyblue">def plot_timeseries(axes, x, y, color, xlabel, ylabel):</span>
+        <br><span class="margin-left2">axes.plot(x, y, color=color)</span> # Membuat plot
+        <br><span class="margin-left2">axes.set_xlabel(xlabel)</span> # Membuat label sumbu-x
+        <br><span class="margin-left2">axes.set_ylabel(ylabel,</span> # Membuat label sumbu-y
+        <br><span class="margin-left3">color=color)</span> # Memberikan warna pada plot
+        <br><span class="margin-left2">axes.tick_params('y',</span>
+        <br><span class="margin-left3">colors=color)</span> # Memberikan warna pada sumbu-y
+    </p>
+
+    <p>
+        Dengan adanya fungsi tersebut, pengguna cukup memanggilnya saja untuk membuat plot time series tanpa perlu menuliskan kembali sintaksnya seperti contoh berikut:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax, climate_change.index, climate_change['co2'], 'blue','Time','CO2 (ppm)')</span>
+        <br><span class="teks-skyblue">ax2 = ax.twinx()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax2,</span>
+        <br><span class="margin-left2">climate_change.index,</span>
+        <br><span class="margin-left2">climate_change['relative_temp'],</span>
+        <br><span class="margin-left2">'red','Time','Relative temperature (Celsius)')</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1krjf9hAK_oGeib6O2qJldx6PgwSeg5t7/preview" width="75%" height="380px" style="margin-left: 15%;" frame-border="0" alt="Gambar 24"></iframe>
+
+
+    <!--Anotasi pada Visualisasi Data Time Series-->
+    <h1 id="anotasi-visualisasi">Anotasi pada Visualisasi Data Time Series</h1>
+    <p>
+        Pada matplotlib pengguna dapat menampilkan text tertentu dalam sebuah plot dengan menggunakan fungsi <span class="teks-tomato">.annotate()</span>. Hal ini berfungsi untuk menampilkan suatu pesan tertentu pada event tertentu yang terjadi pada sebuah data.
+    </p>
+
+    <p>
+        Contoh di bawah ini adalah kode untuk menampilkan <b>text >1 degree</b> yang diletakkan pada koordinat <b>2015-10-06</b> pada sumbu <b>x</b> dan <b>1</b> pada <b>sumbu-y</b> sebagai sebuah pesan bahwa pada saat itu temperature bernilai di atas 1 derajat:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax, climate_change.index, climate_change['co2'], 'blue','Time','CO2 (ppm)')</span>
+        <br><span class="teks-skyblue">ax2 = ax.twinx()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax2, climate_change.index,</span>
+        <br><span class="margin-left3">climate_change['relative_temp'],</span>
+        <br><span class="margin-left3">'red','Time',</span>
+        <br><span class="margin-left3">'Relative temperature (Celsius)')</span>
+        <br><span class="teks-skyblue">ax2.annotate(">1 degree", xy=[pd.Timestamp("2015-10-06"), 1])</span>
+        <br><span class="teks-sandybrown">plt.show()</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1ShzTSPDWUl8hswCFqDq49RTV9KP9mdHs/preview" width="90%" height="450px" style="margin-left: 5%;" frame-border="0" alt="Gambar 25"></iframe>
+
+    <p>
+        Untuk mengatur posisi dari text tersebut dapat menggunakan parameter <span class="teks-tomato">xytext</span> pada fungsi annotate. Contoh di bawah adalah mengatur posisi text pada koordinat <b>2018-10-06</b> pada sumbu <b>X</b> dan <b>-0.2</b> pada sumbu <b>Y</b>:
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax, climate_change.index, climate_change['co2'], 'blue','Time','CO2 (ppm)')</span>
+        <br><span class="teks-skyblue">ax2 = ax.twinx()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax2, climate_change.index,</span>
+        <br><span class="margin-left3">climate_change['relative_temp'],</span>
+        <br><span class="margin-left3">'red','Time',</span>
+        <br><span class="margin-left3">'Relative temperature (Celsius)')</span>
+        <br><span class="teks-sandybrown">ax2.annotate(">1 degree",</span>
+        <br><span class="margin-left2" style="color: sandybrown;">xy=(pd.Timestamp('2015-10-06'), 1),</span>
+        <br><span class="margin-left2" style="color: sandybrown;">xytext=(pd.Timestamp('2008-10-06'), -0.2))</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/11pWrEkO-ERpi6axyW0vrSJDCTYrXR5oS/preview" width="75%" height="400px" style="margin-left: 15%;" frame-border="0" alt="Gambar 26"></iframe>
+
+    <p>
+        Pada penulisan text (pesan) tertentu pada plot, pengguna dapat menambahkan beberapa style, salah satunya adalah <span class="teks-tomato">Arrow</span> (tanda panah) untuk menunjukkan text (pesan) tersebut terjadi pada saat kapan. 
+        Penambahan <span class="teks-tomato">Arrow</span> (tanda panah) ini bisa dilakukan dengan menambahkan parameter <span class="teks-tomato">arrowprops={}</span> pada fungsi annotate.
+    </p>
+    <p class="kotak" style="color: #fff;">
+        <span class="teks-skyblue">fig, ax = plt.subplots()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax, climate_change.index, climate_change['co2'], 'blue','Time','CO2 (ppm)')</span>
+        <br><span class="teks-skyblue">ax2 = ax.twinx()</span>
+        <br><span class="teks-skyblue">plot_timeseries(ax2, climate_change.index,</span>
+        <br><span class="margin-left3">climate_change['relative_temp'],</span>
+        <br><span class="margin-left3">'red','Time',</span>
+        <br><span class="margin-left3">'Relative temperature (Celsius)')</span>
+        <br><span class="teks-sandybrown">ax2.annotate(">1 degree",</span>
+        <br><span class="margin-left2" style="color: sandybrown;">xy=(pd.Timestamp('2015-10-06'), 1),</span>
+        <br><span class="margin-left2" style="color: sandybrown;">xytext=(pd.Timestamp('2008-10-06'), -0.2), arrowprops={})</span>
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1v843GXKJO18s30v7sc0J3S3-X6hJkUx3/preview" width="80%" height="420px" style="margin-left: 10%;" frame-border="0" alt="Gambar 27"></iframe>
+
+    <p>
+        Untuk mengatur ukuran, dan warna tanda panah tersebut dapat dilakukan dengan menggunakan argument <span class="teks-tomato">“arrowstyle”:”->”</span> dan <span class="teks-tomato">“color”:”gray”</span>. 
+        Pada contoh di bawah adalah penerapan dari argument tersebut di mana ukuran dari tanda panah tersebut menjadi lebih kecil dan berwarna abu-abu.
+    </p>
+    <p>
+        Output yang dihasilkan adalah sebagai berikut:
+    </p>
+    <iframe src="https://drive.google.com/file/d/1zO0dAPczJVgRCbn9siCGeZUZ21jsVBOL/preview" width="80%" height="420px" style="margin-left: 10%;" frame-border="0" alt="Gambar 27"></iframe>
+
+
+    <p style="margin-left: 1%; margin-top: 2%;">
+        Berikut adalah video tutorial Visualisasi dengan Matplotlib pada Python - Part 1.
+    </p>
+    <iframe src="https://drive.google.com/file/d/1064vkih9JdTfdyyLDI-oFy_RnHHGDXnv/preview" width="95%" height="460px" style="margin-left: 1%; margin-bottom: 5%;" frame-border="0" allow="autoplay; fullscreen; accelerometer; encrypted-media; gyroscope; picture-in-picture;" alt="video tutorial"></iframe>
+
+
+
+
+
+
+</div>
+
+</body>
+
+</html>
